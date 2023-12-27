@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajasthan Police</title>
+    <!-- Your existing styles go here -->
+
+    <style>
+        /* Add new styles for the chatbot dialog box */
+        #chat-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 400px;
+            background-color: #2F3651;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            font-family: 'Arial', sans-serif;
+            animation: popUp 0.5s ease-in-out; /* Animation for pop-up effect */
+        }
+
+        @keyframes popUp {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #chat-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #robot-image {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        #chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        #user-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #chat-btn {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #BF0808;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #chat-btn:hover {
+            background-color: #fff;
+            color: #BF0808;
+        }
+
+        /* Styles for chat messages */
+        .chat-message {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background-color: #BDC3C7;
+            color: #2F3651;
+        }
+
+        .bot-message {
+            background-color: #2F3651;
+        }
+
+        /* Styles for the rest of your page */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #2F3651;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        #below {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('bg1.png.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        #top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('raj_icon.webp.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding: 11px;
+            font-size: 24px;
+            text-align: center;
+            clip-path: polygon(0% 0%, 100% 0%, calc(100% - 118px) 100%, 0% 100%);
+            background-color: #2F3651;
+        }
+
+        #top h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        #pretop {
+            background-color: #bf0808;
+        }
+
+        #bottom {
+            height: 80px;
+            background-color: #2F3651;
+            clip-path: polygon(0% 0%, 53% 0%, 47% 100%, 0% 100%);
+        }
+
+        #prebottom {
+            background-color: #bf0808;
+        }
+
+        .mbl {
+            background-color: #BDC3C7;
+        }
+
+        .mbl>p {
+            display: inline-block;
+            padding-left: 15px;
+            font-weight: bold;
+            color: #2F3651;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Call the chatbot function
+            chatbot();
+        });
+
+        function chatbot() {
+            var chatContainer = document.getElementById("chat-container");
+            var chatMessages = document.getElementById("chat-messages");
+            var userInputField = document.getElementById("user-input");
+
+            // Display the chat container after a delay for the pop-up effect
+            setTimeout(function () {
+                chatContainer.style.display = "block";
+            }, 500);
+
+            // Initial welcome message
+            appendMessage("Hi!! Welcome to Rajasthan Police website. What can I do for you today?", "bot");
+
+            // Initial question
+            askQuestion("1--Feedback\n2--FIR download\n3--Posting details\n4--Nobility ranking");
+
+            // Handle user input
+            function handleUserInput() {
+                var userInput = userInputField.value;
+                userInputField.value = ""; // Clear the input field
+
+                // Display user's message
+                appendMessage("You: " + userInput, "user");
+
+                // Handle user input
+                switch (userInput) {
+                    case "1":
+                        askQuestion("In which way are you comfortable giving feedback?\n11--Case Feedback\n12--Officer Feedback\n13--General comments");
+                        break;
+                    case "2":
+                        // Handle FIR download logic
+                        appendMessage("FIR download functionality not implemented yet.", "bot");
+                        break;
+                    case "3":
+                        // Handle Posting details logic
+                        appendMessage("Posting details functionality not implemented yet.", "bot");
+                        break;
+                    case "4":
+                        // Handle Nobility ranking logic
+                        appendMessage("Nobility ranking functionality not implemented yet.", "bot");
+                        break;
+                    case "11": // User selected Case Feedback
+                        window.location.href = "trial.html"; // Redirect to Case Feedback page
+                        break;
+                    case "12": // User selected Officer Feedback
+                        window.location.href = "indi.html"; // Redirect to Officer Feedback page
+                        break;
+                    case "13":
+                        window.location.href = "commentpage.html";
+                        break;
+                    default:
+                        // Handle invalid input
+                        appendMessage("Invalid input. Please try again.", "bot");
+                        askQuestion("1--Feedback\n2--FIR download\n3--Posting details\n4--Nobility ranking");
+                }
+            }
+
+            // Ask a question and wait for user input
+            function askQuestion(question) {
+                appendMessage(question, "bot");
+
+                // Enable the input field for user response
+                userInputField.disabled = false;
+
+                // Focus on the input field
+                userInputField.focus();
+
+                // Set up event listener for Enter key
+                userInputField.addEventListener("keyup", function (event) {
+                    if (event.key === "Enter") {
+                        handleUserInput();
+                    }
+                });
+            }
+
+            // Append a message to the chat container
+            function appendMessage(message, sender) {
+                var messageElement = document.createElement("div");
+                messageElement.textContent = message;
+                messageElement.classList.add("chat-message");
+
+                if (sender === "bot") {
+                    messageElement.classList.add("bot-message");
+                } else if (sender === "user") {
+                    messageElement.classList.add("user-message");
+                }
+
+                chatMessages.appendChild(messageElement);
+
+                // Scroll to the bottom of the chat container
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Disable the input field initially
+            userInputField.disabled = true;
+
+            // Set up event listener for the "Send" button
+            document.getElementById("chat-btn").addEventListener("click", handleUserInput);
+        }
+    </script>
+</head>
+
+<body>
+    <section id="pretop">  
+        <section id="top">
+             <h1>RAJASTHAN POLICE</h1>
+        </section>
+    </section>
+    
+    <section id="below">
+        <marquee behavior="" direction="" vspace="15" ;>
+            Your Feedback helps us to make the services look better and help in the better Functionality of the <span
+                style="color: red; font-weight: bolder;">Police Department</span>
+        </marquee>
+    </section>
+    <section class="mbl">
+        <p>Emergency No. : <font color="red">112</font></p>
+        <p>Garima Helpline : <font color="red">1090</font></p>
+        <p>Child Helpline : <font color="red">1098</font></p>
+        <p>Ambulance No. : <font color="red">108</font></p>
+        <p>CyberCrime Helpline : <font color="red">1930</font></p>
+        <p>State Centralized Call Center no. : <font color="red">181</font></p>
+    </section>
+    <section id="prebottom">
+        <section id="bottom"></section>
+    </section>
+    <div id="chat-container">
+        <div id="chat-header">
+            <img src="robot.png" alt="Robot" id="robot-image">
+            <h2>RJ Bot</h2>
+        </div>
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Type your response...">
+        <button id="chat-btn">Send</button>
+    </div>
+</body>
+
+</html>

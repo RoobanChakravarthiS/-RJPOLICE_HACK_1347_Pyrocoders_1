@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Police Mission Feedback</title> 
+        <style>
+            #header
+{
+    position: sticky;
+    top:0;
+    padding: 11px;
+    background-color: #2F3651;
+    color: aliceblue;
+    text-align: center;
+    text-transform: uppercase;
+    background-image: url(raj_icon.webp.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: larger;
+    clip-path: polygon(
+    0% 0%, 100% 0%,calc(100% - 118px) 100%,0% 100%
+    );
+} 
+
+#font
+{
+    animation: font 0.5s linear;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    align-items: center;
+    margin: 0;  
+    max-width: 100%;
+}
+
+.star-rating1 {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: row-reverse; 
+    animation: font 0.5s linear;
+    margin-bottom: 8px;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: row-reverse; 
+    animation: font 0.5s linear;
+    margin-bottom: 8px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+font-size: 50px;
+padding: 5px;
+cursor: pointer;
+color: #ccc;
+
+}
+
+.star-rating input:checked + label,
+.star-rating input:checked ~ label {
+color: #ff9800; 
+}
+
+.star-rating :hover  + label,
+.star-rating :hover ~ label {
+color: #ff9800; 
+}
+
+#preheader
+{
+    background-color: #bf0808;
+}
+
+#prebottom
+{
+    background-color: #bf0808;
+}
+
+marquee
+{
+    color: #2F3651;
+}
+
+.bg
+{
+    background-image: url(bg1.png.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 640px;
+    opacity: 0.9;
+}
+
+#photo
+{
+    justify-content: center;
+    border: 1px solid;
+    background-color: #fff;
+    border-radius: 2px;
+    width: 90px;
+    height:96px;
+    /* Need to include picture */
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+#top
+{
+    gap: 10px;
+    column-gap: 25px;
+    display: grid;
+}
+
+#name, #Oid {
+    width: 280px;
+    padding: 8px;
+    margin-bottom: 16px;
+    white-space: nowrap;
+}
+#feedback-form {
+    color: aliceblue;
+    margin: 0 auto;
+    background-color :#24293e62;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    animation: box 1s ease-in-out;
+    overflow:hidden;
+    white-space: nowrap;
+}
+
+label {
+    display: block;
+    padding: 5px;
+    animation: font 0.5s linear;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+button {
+    background-color: #293565;
+    color: #fff;
+    padding: 10px;
+    border: solid #293565;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2f4084;
+    border: solid whitesmoke;
+}
+
+#bottom
+{
+    height: 63px;
+    background-color:#2F3651;
+    clip-path: polygon(
+    0% 0%, 53% 0%,47% 100%,0% 100%
+    );
+}
+
+#feedback
+{
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+button
+{
+    margin-left: 140px;
+}
+
+@keyframes box
+{
+    0%{width:10px;}
+    100% {width:400px;}
+}
+
+@keyframes font
+{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+.input_wrapper
+{
+    position: relative;
+ 
+}
+.input_field
+{
+    transition: all 0.2s;
+}
+
+.input_field::placeholder
+{
+    color: transparent;
+}
+
+.input_field:placeholder-shown~.input_label
+{
+    cursor:text;
+    font-size: 1rem;
+    top:7px;
+}
+div>div>label,
+.input_field:focus~.input_label
+{
+    position: absolute;
+    top:-8.85px;
+    display: box;
+    left:18px;
+    padding: 2px;
+    font-size: 14px;
+    transition:  0.3s;
+}
+.input_label
+{
+    color: #2F3651;
+    background-color: #fff;
+    border-radius: 3px;
+    /*text-shadow: -1px 1px 0 #fff,1px 1px 0 #fff,1px -1px 0 #fff,-1px -1px 0 #fff;
+    background-image: linear-gradient(360deg,white,white,white,white,white,white,rgba(255,255,255,0),rgba(255,255,255,0),rgba(255,255,255,0),rgba(255,255,255,0),rgba(255,255,255,0),rgba(255,255,255,0));*/
+    animation: font 0.5s linear;
+}
+
+
+.mbl{
+    background-color: #BDC3C7;
+}
+.mbl>p
+{
+    display: inline-block;
+    padding-left: 15px;
+    font-weight: bold;
+    color: #2F3651;
+}
+        </style>
+        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script> -->
+    </head>
+    <body>
+        <section id="preheader">
+        <section id="header">
+            <h2 id="font">Police Mission Feedback</h2>
+        </section>  
+        </section>
+        <section class="bg">  
+        <marquee behavior="" direction="left" vspace="15">Your feedback helps us to make the services look better and help in the better functionality of the <font color="red"><strong>Police Department.</strong></font></marquee>
+<div id="feedback-form">
+    <form id="form" >
+        <div id="top">
+        <div class="box">
+            <div class="input_wrapper">
+                <input type="text" id="name" name="Officer Name" placeholder="" required class="input_field">
+                <label for="name" class="input_label">Officer Name</label>
+            </div>
+        </div>
+                <div id="photo"><font color="black">#photo</font></div>
+        <div class="box">
+            <div class="input_wrapper">           
+                <input type="text" id="Oid" name="Officer ID" placeholder="" required class="input_field">
+                <label for="text" class="input_label">Officer ID</label>
+            </div>
+        </div>
+
+        </div>
+
+        <label for="rating1">Rating:<font color="lightgrey">(Sincerity)</font></label>
+        <div class="star-rating">
+            <input type="radio" id="star11" name="starRating1" value="1" required><label for="star11">&#9733;</label>
+            <input type="radio" id="star12" name="starRating1" value="2" required><label for="star12">&#9733;</label>
+            <input type="radio" id="star13" name="starRating1" value="3" required><label for="star13">&#9733;</label>
+            <input type="radio" id="star14" name="starRating1" value="4" required><label for="star14">&#9733;</label>
+            <input type="radio" id="star15" name="starRating1" value="5" required><label for="star15">&#9733;</label>
+        </div>
+
+        <label for="rating2">Rating:<font color="lightgrey">(Honesty)</font></label>
+        <div class="star-rating">
+            <input type="radio" id="star21" name="starRating2" value="1" required><label for="star21">&#9733;</label>
+            <input type="radio" id="star22" name="starRating2" value="2" required><label for="star22">&#9733;</label>
+            <input type="radio" id="star23" name="starRating2" value="3" required><label for="star23">&#9733;</label>
+            <input type="radio" id="star24" name="starRating2" value="4" required><label for="star24">&#9733;</label>
+            <input type="radio" id="star25" name="starRating2" value="5" required><label for="star25">&#9733;</label>
+        </div>
+        <!-- <div class="box">
+            <div class="input_wrapper">
+               <input id="password" type="text" name="Password" placeholder="" required class="input_field">
+               <label class="input_label" >Password</label>
+            </div>
+        </div> -->
+
+        <label>Feedback:</label>
+        <textarea id="feedback" name="Feedback" cols="4" rows="5" placeholder="#Feedback Here"></textarea>
+    </form>
+    <button type="submit" id="submit-button" onclick="getData(),action()">Submit Feedback</button>
+    </div>
+</section>
+<section class="mbl">
+<p>Emergency No. : <font color="red">112</font></p>
+<p>Garima Helpline : <font color="red">1090</font></p>
+<p>Child Helpline : <font color="red">1098</font></p>
+<p>Ambulance No. : <font color="red">108</font></p>
+<p>CyberCrime Helpline : <font color="red">1930</font></p>
+<p>State Centralized Call Center no. : <font color="red">181</font></p>
+</section>
+<section id="prebottom">
+ <section id="bottom"></section>
+</section>
+<script type="text/javascript">
+    function getData()
+    {
+        OffId=document.getElementById("Oid").value;
+        OffName=document.getElementById("name").value;
+        let starV = document.getElementsByName("starRating1");
+        for(i=0;i < starV.length;i++)
+            if(starV[i].checked)
+                Star=(starV[i].value);
+        // let starV2 = document.getElementsByName("starRating2");
+        // for(i=0;i < starV2.length;i++)
+        //     if(starV2[i].checked)
+        //         Star2=(starV2[i].value);
+        Feedback=document.getElementById("feedback").value;
+        alert("Uploaded Successfully")
+        document.getElementById("form").reset();
+    }
+
+    // function action()
+    // {
+    // async function main() 
+    // {
+    //     let pyodide = await loadPyodide();
+    //     await pyodide.loadPackage("micropip");
+    //     const micropip = pyodide.pyimport("micropip");
+    //     await micropip.install("sqlite3");
+    //     result = pyodide.runPython(`
+    //         import sqlite3
+    //         from js import OffId, OffName, Star, Feedback
+    //         connection = sqlite3.connect ("Academy.db")
+    //         cursor = connection.cursor()
+    //         sql_command = """
+    //         CREATE TABLE Officer_Data (
+    //         Officer_ID VARCHAR(20) PRIMARY KEY , Officer_Name VARCHAR(30), Star_Rating_1 INTEGER, Star_Rating_2 INTEGER, 
+    //         Feedback VARCHAR(1000));"""
+    //         cursor.execute(sql_command)
+    //         for p in range(1):
+    //             format_str = """INSERT INTO Officer_Data (Officer_ID,Officer_Name,Star_Rating-1,Star_Rating_2,Feedback) VALUES ("{id}", "{name}", "{star1}", "{star2}", "{feed}");"""
+    //             sql_command = format_str.format(id=OffId, name=OffName, star1=Star1, star2=Star2, feed=Feedback)
+    //         cursor.execute(sql_command)
+    //         print("Officer_Data TABLE CREATED")
+    //         cursor.execute("SELECT * FROM Officer_Data")
+    //         result = cursor.fetchall()
+    //         for r in result:
+    //             print(*r)
+    //         connection.commit()
+    //         connection.close()
+    //     `);
+    //     }
+    // main();
+    // }
+</script>
+</body>
+</html>
