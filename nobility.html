@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feedback Form</title>
+        <style>
+            html
+            {
+                scroll-behavior: smooth;
+                box-sizing: border-box;
+            }
+            body 
+            {
+                user-select: none;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                display: grid;
+                grid-template-columns: auto auto;
+            }
+            
+            .top
+            {
+                /* background: rgb(191,216,246);
+                background: linear-gradient(90deg, rgba(191,216,246,1) 0%, rgba(26,117,224,1) 100%); */
+                /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(38,51,97,1) 0%, rgba(65,143,222,1) 79% ); */
+                background-color: #101720;
+                padding: 10px;
+                font-size: larger;
+                display: flex;
+                color: #fff;
+                #profile
+                {
+                  font-size: xx-large;
+                  background: transparent;
+                  color: #b2c7e1;
+                  margin: auto 0px auto auto;
+                }
+                #user
+                {
+                  margin: auto 20px auto 10px ;
+                  font-size: 1.2rem;
+                }
+                #logout
+                {
+                  font-size: xx-large;
+                  background: transparent;
+                  color: #b2c7e1;
+                }
+            }
+
+            .sidebar
+            {
+              /* background-color: rgb(0,172,255); */
+              background-color:#101720;
+              width: 70px;
+              grid-row-start: 1;
+              grid-row-end: 3;
+              display: flex;
+              flex-direction: column;
+              #img
+              {
+                height: 73px;
+                object-fit: cover;
+              }
+              #nav
+              {
+                color: #b2c7e1;
+                height: 70px;
+                border: 0;
+                background: transparent;
+                font-size: xx-large;
+              }
+              #nav:hover
+              {
+                background-color:rgba(255,255,255,0.1);
+                backdrop-filter: blur(8px);
+              }
+            }
+            
+            #main
+            { 
+                height: fit-content;
+                background: rgb(26,88,160);
+                background: linear-gradient(270deg, rgba(26,88,160,1) 0%, rgba(1,18,65,1) 100%);
+                color: #f9f6ee;
+                display:grid;
+                grid-template-columns: repeat(3,auto);
+                column-gap: 10px;
+                row-gap: 10px;
+                padding: 10px;
+                height: 80vh;
+            }
+            
+            #districts
+            {
+                display: grid;
+                grid-template-columns: repeat(2,auto);
+                font-size: larger;
+                border-right: solid 0.5px white;
+                border-bottom: solid 0.5px white;
+                padding:10px; 
+                #h1 , #hr
+                {
+                    margin:auto;
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+            }
+
+            #districts>a
+            {
+                margin: auto;
+            }
+            
+            a>button
+            {
+              color: #fff;
+              font-size: large;
+            }
+                
+            a>button:hover 
+            {
+                text-decoration: underline; 
+            }
+            
+            #disp-stat-button
+            {
+                border: 0;
+                background: transparent;
+            }
+
+            #filter
+            {
+                padding: 10px;
+                border-right: solid 0.5px white;
+                border-bottom: solid 0.5px white;
+                font-size: larger;
+                display: grid;
+                grid-template-columns: repeat(2,auto);
+                #h3 , #label
+                {
+                    margin: auto;
+                }
+                #input
+                {
+                    width: 250px;
+                }
+                #hr
+                {
+                    margin: auto;
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+            }
+    
+            #display-credit 
+            {
+                display:grid;
+                grid-template-columns: repeat(2,auto);  
+                border-right: solid 0.5px white;
+                border-bottom: solid 0.5px white;
+                padding: 10px;
+                font-size: larger;
+                #h3
+                {
+                    margin: auto;
+                }
+                #hr
+                {
+                    margin:auto;
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+            }
+            .table{
+                display: grid;
+                grid-template-columns: repeat(auto,auto);
+            }
+
+            #offform
+            {
+              border-right: solid 0.5px white;
+              border-bottom: solid 0.5px white;
+              display: grid;
+              grid-template-columns: repeat(2,auto);
+              padding: 10px;
+              #h3 , #input
+              {
+                margin: auto;
+              }
+            }
+            
+            #show-feed
+            {
+                padding: 10px;
+                border-right: solid 0.5px white;
+                border-bottom: solid 0.5px white;
+                overflow-y:auto;
+                overflow-x:hidden;
+                #h3
+                {
+                    margin: auto;
+                }
+            }
+
+            #disp-stat
+            {
+                display: grid;
+                grid-template-columns: repeat(3,auto);
+                padding: 10px;
+                height:  auto;
+                border-right: solid 0.5px white;
+                border-bottom: solid 0.5px white;
+                overflow-y: auto;
+                overflow-x: hidden;
+                #disp-stat-area
+                {
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+                    margin: auto;
+                }
+            }
+
+            #disp-stat>div>p
+            {
+                margin: 0;
+            }
+
+            #sub
+            {
+                grid-column-start:1;
+                grid-column-end:3;
+                margin: auto;
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        
+            #bottom
+            {
+                height:80px;
+                background-color: #2F3651;
+                clip-path: polygon(0% 0%,53% 0%,47% 100%,0% 100%)
+            }
+        
+            #prebottom
+            {
+                background-color: #bf0808;
+            }    
+        </style>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+      <section class="sidebar">
+        <img src="raj_icon.webp" id="img">
+        <button id="nav"><i class="fa fa-home"></i></button>
+        <button id="nav"><i class="fa fa-address-book"></i></button>
+        <button id="nav"><i class="fa fa-search"></i></button>
+        <button id="nav"><i class="fa fa-map"></i></button>
+      </section>
+      <section class="top">
+        <div id="profile"><i class="fa fa-user"></i></div>
+        <p id="user">#dynamicname</p>
+        <button id="logout" onclick="redirect()"><i class="fa fa-sign-out"></i></button>
+      </section>
+    <section id="main">
+        <section id="districts">
+            <h1 id="h1">Your District Navigation</h1>
+            <hr id="hr" noshade width="80%" color="white">
+            <a href="#disp-stat"><button id="disp-stat-button" onclick="display(0)">Ajmeer</button></a>
+            <a href="#disp-stat"><button id="disp-stat-button" onclick="display(1)">Alwar</button></a>
+            <a href="#disp-stat"><button id="disp-stat-button" onclick="display(2)">Banswara</button></a>
+            <a href="#disp-stat"><button id="disp-stat-button" onclick="display(3)">Baran</button></a>
+            <a href="#disp-stat"><button id="disp-stat-button" onclick="display(4)">Barmer</button></a>
+            <a href="#disp-stat"><button id="disp-stat-button" onclick="display(5)">Bharatpur</button></a>
+        </section>
+        <form action="" method="GET" id="filter">
+            <h3 id="h3">Filter</h3><h3 id="h3">For ranking</h3>
+            <hr id="hr" noshade width="100%" color="white">
+            <label id="label">Enter District</label>
+            <input id="input" name="district" value="<?php if(isset($_GET['district'])){echo $_GET['district'];}else{echo '';} ?>">
+            <label id="label">Enter Station</label>
+            <input id="input" name="station" value="<?php if(isset($_GET['station'])){echo $_GET['station'];}else{echo '';} ?>">
+            <button type="submit" value="search" id="sub" name="submit">Search</button>
+        </form>
+        <section id="display-credit">
+            <h3 id="h3">Name</h3><h3 id="h3">Credit</h3>
+            <hr id="hr" noshade width="100%" color="white">
+            <?php
+                $con = mysqli_connect("localhost", "Feedback", "rjpolice", "feedbacks");
+                if (!$con) 
+                {
+                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                }
+                if (isset($_GET['district']) && isset($_GET['station'])) 
+                {
+                    $dist = mysqli_real_escape_string($con, $_GET['district']);
+                    $stat = mysqli_real_escape_string($con, $_GET['station']);
+                    $query = "SELECT HandlingOfficer, credit FROM fir feedback WHERE district = '$dist' AND station = '$stat'";
+                }   
+                else 
+                {
+                    $query = "SELECT HandlingOfficer, credit FROM fir feedback";
+                }   
+                $run = mysqli_query($con, $query);
+                if ($run) 
+                {
+                    if (mysqli_num_rows($run) > 0) 
+                    {
+                        while ($items = mysqli_fetch_assoc($run)) 
+                        {
+                        ?>
+                            <div><?php echo $items['HandlingOfficer']; ?></div>
+                            <div><?php echo $items['credit']; ?></div>
+                        <?php
+                        }
+                    }        
+                    else 
+                    {
+                    ?>
+                        <div><?phpecho "No Record Found" ;?></div>
+                    <?php
+                    }
+                } 
+                else 
+                {
+                    echo "Query failed: " . mysqli_error($con);
+                }
+                mysqli_close($con);
+            ?>                        
+        </section>
+</body>
+</html>
